@@ -1,12 +1,21 @@
 require "exam/version"
 
 module Exam
+	class Test
+		attr_accessor :pregunta, :correcta, :falsas
 
-	class test
-		attr_reader :pregunta :respuesta
-		def initialize(pregunta, respuesta)
+		def initialize(pregunta, correcta, falsas)
 			@pregunta = pregunta
-			@respuesta = respuesta
-
+			@correcta = correcta
+			@falsas = falsas
 		end
+
+		def to_html
+			opciones = @correcta+[@falsas]
+			opciones = opciones.shuffle
+			opciones=''
+      opciones += %Q{<input type = "checkbox" value="#{opciones}" name=0> #{options}\n}
+    	texto = %Q{{#{@pregunta}}<br/>{#{opciones}}}
+		end
+	end
 end
