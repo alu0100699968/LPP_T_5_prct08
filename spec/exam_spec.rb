@@ -17,7 +17,7 @@ module Exam
 
 			context "Conversion" do
       	it "Se puede generar html" do
-        	expect(@ex).to respond_to :to_html
+					expect(@ex).to respond_to :to_html
         end
       end
 
