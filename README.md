@@ -1,4 +1,6 @@
-# Exam
+# Gema Exam
+
+Autores: Jonathan Expósito Martín  -  Sergio J. Rodríguez Martín
 
 TODO: Write a gem description
 
