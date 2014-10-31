@@ -58,6 +58,12 @@ module Exam
 
 		end
 
+		describe "Preguntas" do
+			it "#Se almacenan las preguntas en la lista" do
+				@l2.to_s.should eql "Lista:  #{@p1.to_s}  ->  #{@p2.to_s}  ->  #{@p3.to_s}  ->  #{@p4.to_s}  ->  #{@p5.to_s}"
+			end
+		end
+
 		describe "List" do
 			it "#Se extrae el primer elemento de la lista" do
 				@l1.popHead
