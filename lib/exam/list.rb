@@ -15,7 +15,9 @@ class List
   end
 
   def popHead
+  	nodo = @head
     @head=@head[:next]
+    return nodo[:value]
   end
 
   def push(v)
