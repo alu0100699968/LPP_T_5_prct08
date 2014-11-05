@@ -23,10 +23,19 @@ class DList
   end
 
   def push(v)
-    aux = @head
-    nodo=Node.new(v, aux, nil)
-    @head=nodo
-    aux[:prev]=@head
+    if v.kind_of?(Array)
+      for i in 0..v.size-1
+          aux = @head
+          nodo=Node.new(v[i], aux, nil)
+          @head=nodo
+          aux[:prev]=@head
+      end
+    else
+      aux = @head
+      nodo=Node.new(v, aux, nil)
+      @head=nodo
+      aux[:prev]=@head
+    end
   end
 
   def to_s
@@ -40,4 +49,17 @@ class DList
     #puts "#{s}"
   end
 
+  def to_is
+    aux=@head
+    s="Lista:  "
+    while aux[:next] do
+      aux=aux[:next]
+    end
+    while aux[:prev] do
+      s = s + "#{aux[:value]}" + "  ->  "
+      aux=aux[:prev]
+    end
+    s = s + "#{aux[:value]}"
+    #puts "#{s}"
+  end
 end
