@@ -1,6 +1,7 @@
 # create a Struct with :value and :next
 Node = Struct.new(:value, :next)
 
+# create a LList
 class LList
   attr_accessor :head
 
