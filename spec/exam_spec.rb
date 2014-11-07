@@ -44,15 +44,14 @@ module Exam
 			@l1 = List.new([3,4,5])
 
 			falsas1 = ["#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
-			falsas2 = ["Falso"]
 			falsas3 = ["1", "bob", "Ninguna de las anteriores"]
 			falsas4 = ["Una constante", "Un objeto", "Ninguna de las anteriores"]
-			falsas5 = ["Falso"]
+
 			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", falsas1)
-			@p2 = Test.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","Cierto", falsas2)
+			@p2 = ToF.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","V")
 			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", falsas3)
 			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", falsas4)
-			@p5 = Test.new("Es apropiado que una clase Tablero herede de una clase Juego","Cierto", falsas5)
+			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V")
 
 			@l2 = List.new([@p1,@p2,@p3,@p4,@p5])
 
@@ -88,3 +87,59 @@ module Exam
 
 	end
 end
+
+describe DList do
+
+		before :each do
+			@l1 = DList.new([3,4,5])
+
+			falsas1 = ["#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
+			falsas3 = ["1", "bob", "Ninguna de las anteriores"]
+			falsas4 = ["Una constante", "Un objeto", "Ninguna de las anteriores"]
+
+			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", falsas1)
+			@p2 = ToF.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","V")
+			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", falsas3)
+			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", falsas4)
+			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V")
+
+			@l2 = DList.new([@p1,@p2,@p3,@p4,@p5])
+
+		end
+
+		describe "Preguntas" do
+			it "#Se almacenan las preguntas en la lista" do
+				@l2.to_s.should eql "Lista:  #{@p1.to_s}  ->  #{@p2.to_s}  ->  #{@p3.to_s}  ->  #{@p4.to_s}  ->  #{@p5.to_s}"
+			end
+			it "#Se almacenan las preguntas en la lista" do
+				@l2.to_is.should eql "Lista:  #{@p5.to_s}  ->  #{@p4.to_s}  ->  #{@p3.to_s}  ->  #{@p2.to_s}  ->  #{@p1.to_s}"
+			end
+		end
+
+		describe "List" do
+			it "#Se extrae el primer elemento de la lista" do
+				@l1.popHead
+				@l1.head[:value].should eql 4
+			end
+
+			it "#Se puede insertar un elemento" do
+				@l1.push("nuevo")
+				@l1.to_s.should eql "Lista: nuevo -> 3  ->  4  ->  5"
+				@l1.to_is.should eql "Lista: 5 -> 4  ->  3  ->  nuevo"
+			end
+
+			it "#Se pueden insertar varios elementos" do
+				@l1.push([0,1,2])
+				@l1.to_s.should eql "Lista:  0  ->  1  ->  2  ->  3  ->  4  ->  5"
+				@l1.to_is.should eql "Lista:  5  ->  4  ->  3  ->  2  ->  1  ->  0"
+			end
+
+			it "#Debe existir una Lista con su cabeza" do
+				@l1.head[:value].should eql 3
+			end
+
+		end
+
+	end
+end
+
