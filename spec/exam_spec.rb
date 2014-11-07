@@ -38,6 +38,10 @@ module Exam
 				@p2.correcta.should eq("F")
 				@p2.falsas.should eq("V")
 			end
+
+			it "Es una instancia de Test" do
+				@p1.class.should be < Test
+			end
 		end
 
 	end
