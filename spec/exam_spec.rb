@@ -23,6 +23,25 @@ module Exam
 
 	end
 
+	describe ToF do
+		before :each do
+			@p1=ToF.new("Hoy es viernes","V")
+			@p2=ToF.new("Hoy es jueves","F")
+		end
+		context "Verdadero o Falso" do
+			it "Preguntas verdadero o falso correctamente realizadas" do
+				@p1.pregunta.should eq("Hoy es viernes")
+				@p1.correcta.should eq("V")
+				@p1.falsas.should eq("F")
+
+				@p2.pregunta.should eq("Hoy es jueves")
+				@p2.correcta.should eq("F")
+				@p2.falsas.should eq("V")
+			end
+		end
+
+	end
+
 	describe Node do
 
 		before :each do
@@ -86,12 +105,11 @@ module Exam
 		end
 
 	end
-end
 
 describe DList do
 
 		before :each do
-			@l1 = DList.new([3,4,5])
+			@l1 = DList.new([5,4,3])
 
 			falsas1 = ["#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
 			falsas3 = ["1", "bob", "Ninguna de las anteriores"]
@@ -103,7 +121,7 @@ describe DList do
 			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", falsas4)
 			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V")
 
-			@l2 = DList.new([@p1,@p2,@p3,@p4,@p5])
+			@l2 = DList.new([@p5,@p4,@p3,@p2,@p1])
 
 		end
 
@@ -124,12 +142,12 @@ describe DList do
 
 			it "#Se puede insertar un elemento" do
 				@l1.push("nuevo")
-				@l1.to_s.should eql "Lista: nuevo -> 3  ->  4  ->  5"
-				@l1.to_is.should eql "Lista: 5 -> 4  ->  3  ->  nuevo"
+				@l1.to_s.should eql "Lista:  nuevo  ->  3  ->  4  ->  5"
+				@l1.to_is.should eql "Lista:  5  ->  4  ->  3  ->  nuevo"
 			end
 
 			it "#Se pueden insertar varios elementos" do
-				@l1.push([0,1,2])
+				@l1.push([2,1,0])
 				@l1.to_s.should eql "Lista:  0  ->  1  ->  2  ->  3  ->  4  ->  5"
 				@l1.to_is.should eql "Lista:  5  ->  4  ->  3  ->  2  ->  1  ->  0"
 			end
@@ -142,4 +160,3 @@ describe DList do
 
 	end
 end
-

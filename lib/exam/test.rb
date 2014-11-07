@@ -1,7 +1,7 @@
 class Test
   attr_accessor :pregunta, :correcta, :falsas
 
-  def initialize(pregunta, correcta, falsas)
+  def initialize(pregunta, correcta, falsas=nil)
     @pregunta = pregunta
     @correcta = correcta
     @falsas = falsas
@@ -17,6 +17,19 @@ class Test
 
   def to_s
     texto = "#{@pregunta} #{@correcta} #{[@falsas]}"
+  end
+
+end
+
+class ToF < Test
+
+  def initialize (preguntas, correcta)
+    super(preguntas,correcta)
+    if @correcta=="V"
+      @falsas="F"
+    elsif @correcta=="F"
+      @falsas="V"
+    end
   end
 
 end
