@@ -39,8 +39,9 @@ module Exam
 				@p2.falsas.should eq("V")
 			end
 
-			it "Es una instancia de Test" do
+			it "Es una instancia de Test" do #Dos alternativas para comprobar la herencia
 				@p1.class.should be < Test
+				expect(@p1).to be_kind_of(Test)
 			end
 		end
 
