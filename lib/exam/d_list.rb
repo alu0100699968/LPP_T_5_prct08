@@ -1,5 +1,5 @@
-# create a Struct with :value, :next and :prev
-Node = Struct.new(:value, :next, :prev)
+#Require para utilizar el Struct Node
+require 'exam/list.rb'
 
 # create a DList
 class DList

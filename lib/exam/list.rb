@@ -1,5 +1,5 @@
-# create a Struct with :value and :next
-Node = Struct.new(:value, :next)
+# create a Struct with :value, :next and :prev (for DList)
+Node = Struct.new(:value, :next, :prev)
 
 class List
   attr_accessor :head
