@@ -3,7 +3,20 @@ require 'exam/list.rb'
 
 # create a DList
 class DList
+
+  include Enumerable
+
   attr_accessor :head, :tail
+
+  def each
+  	aux=@head
+  	while aux[:next]
+  		yield aux[:value]
+  		aux=aux[:next]
+  	end
+  	yield aux[:value]
+  end
+
 
   def initialize(v)
     if v.kind_of?(Array)

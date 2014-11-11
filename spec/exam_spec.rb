@@ -179,6 +179,11 @@ describe DList do
 				@l1.head[:value].should eql 3
 			end
 
+			it "#Funciona enumerable" do
+				@l1.find {|i| i == 3}.should eq(3)
+				@l1.find {|i| i == 2}.should eq(nil)
+			end
+
 		end
 
 	end
