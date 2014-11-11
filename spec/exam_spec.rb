@@ -4,14 +4,14 @@ require "exam.rb"
 module Exam
 	describe Test do
 		before :each do
-			@p1=Test.new("CCAA de España", "17",["15","16","18"])
-			@p2=Test.new("CCAA de España", "17",["15","16","18"])
-			@p3=Test.new("CCAA de España", "17",["67","16","18"])
+			@p1=Test.new("CCAA de Espanya", "17",["15","16","18"])
+			@p2=Test.new("CCAA de Espanya", "17",["15","16","18"])
+			@p3=Test.new("CCAA de Espanya", "17",["67","16","18"])
 		end
 
 		context "Pregunta" do
 			it "Pregunta correctamente hecha" do
-				@p1.pregunta.should eq("CCAA de España")
+				@p1.pregunta.should eq("CCAA de Espanya")
 				@p1.correcta.should eq('17')
 				@p1.falsas.should eq(['15','16','18'])
 			end
