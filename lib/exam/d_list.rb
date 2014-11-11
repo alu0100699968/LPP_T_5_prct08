@@ -9,7 +9,7 @@ class DList
     if v.kind_of?(Array)
       @head = Node.new(v[0],nil, nil)
       v.shift
-      push(v)
+      pushHead(v)
     else
       @head = Node.new(v, nil, nil)
     end
@@ -22,7 +22,18 @@ class DList
     return nodo[:value]
   end
 
-  def push(v)
+  def popTail
+  	nodo = @head
+  	while nodo[:next] do
+      nodo=nodo[:next]
+    end
+    aux=nodo[:prev]
+    aux[:next]=nil
+    nodo[:prev]=nil
+    return nodo[:value]
+  end
+
+  def pushHead(v)
     if v.kind_of?(Array)
       for i in 0..v.size-1
           aux = @head
@@ -36,6 +47,26 @@ class DList
       @head=nodo
       aux[:prev]=@head
     end
+  end
+
+    def pushTail(v)
+	    aux = @head
+
+	    if v.kind_of?(Array)
+	      for i in 0..v.size-1
+	        while aux[:next]!=nil do
+	          aux=aux[:next]
+	        end
+	        nuevo_nodo=Node.new(v[i], nil, aux)
+	        aux[:next]=nuevo_nodo
+	      end
+	    else
+	      while aux[:next] do
+	        aux=aux[:next]
+	      end
+	      nuevo_nodo=Node.new(v, nil, aux)
+	      aux[:next]=nuevo_nodo
+	    end
   end
 
   def to_s
