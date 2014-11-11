@@ -1,5 +1,14 @@
 class Test
+
+  include Comparable
+  
   attr_accessor :pregunta, :correcta, :falsas
+
+  def <=> (a)
+    @pregunta<=>a.pregunta
+    @correcta<=>a.correcta
+    @falsas<=>a.falsas
+  end
 
   def initialize(pregunta, correcta, falsas=nil)
     @pregunta = pregunta

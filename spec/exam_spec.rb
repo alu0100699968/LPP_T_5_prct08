@@ -5,6 +5,8 @@ module Exam
 	describe Test do
 		before :each do
 			@p1=Test.new("CCAA de España", "17",["15","16","18"])
+			@p2=Test.new("CCAA de España", "17",["15","16","18"])
+			@p3=Test.new("CCAA de España", "17",["67","16","18"])
 		end
 
 		context "Pregunta" do
@@ -20,6 +22,14 @@ module Exam
 				@p1.should respond_to :to_html
 	    end
 	  end
+
+		context "Comparable" do
+			it "Se puede comparar" do
+				expect(@p1==@p2).to be(true)
+				expect(@p1==@p3).to be(false)
+				expect(@p1<@p3).to be(true)
+			end
+		end
 
 	end
 
@@ -154,13 +164,13 @@ describe DList do
 			end
 
 			it "#Se puede insertar un elemento" do
-				@l1.push("nuevo")
+				@l1.pushHead("nuevo")
 				@l1.to_s.should eql "Lista:  nuevo  ->  3  ->  4  ->  5"
 				@l1.to_is.should eql "Lista:  5  ->  4  ->  3  ->  nuevo"
 			end
 
 			it "#Se pueden insertar varios elementos" do
-				@l1.push([2,1,0])
+				@l1.pushHead([2,1,0])
 				@l1.to_s.should eql "Lista:  0  ->  1  ->  2  ->  3  ->  4  ->  5"
 				@l1.to_is.should eql "Lista:  5  ->  4  ->  3  ->  2  ->  1  ->  0"
 			end
