@@ -2,18 +2,21 @@ class Test
 
   include Comparable
   
-  attr_accessor :pregunta, :correcta, :falsas
+  attr_accessor :pregunta, :correcta, :falsas, :nivel
 
   def <=> (a)
-    @pregunta<=>a.pregunta
-    @correcta<=>a.correcta
-    @falsas<=>a.falsas
+    @nivel <=> a.nivel
   end
 
-  def initialize(pregunta, correcta, falsas=nil)
+  def == (a)
+    @pregunta==a.pregunta && @correcta==a.correcta && @falsas==a.falsas
+  end
+
+  def initialize(pregunta, correcta, falsas=nil, nivel=nil)
     @pregunta = pregunta
     @correcta = correcta
     @falsas = falsas
+    @nivel = nivel
   end
 
   def to_html

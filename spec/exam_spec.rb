@@ -4,9 +4,9 @@ require "exam.rb"
 module Exam
 	describe Test do
 		before :each do
-			@p1=Test.new("CCAA de Espanya", "17",["15","16","18"])
-			@p2=Test.new("CCAA de Espanya", "17",["15","16","18"])
-			@p3=Test.new("CCAA de Espanya", "17",["67","16","18"])
+			@p1=Test.new("CCAA de Espanya", "17", ["15","16","18"], 1)
+			@p2=Test.new("CCAA de Espanya", "17", ["15","16","18"], 2)
+			@p3=Test.new("CCAA de Espanya", "18", ["15","16","18"], 3)
 		end
 
 		context "Pregunta" do
@@ -25,9 +25,20 @@ module Exam
 
 		context "Comparable" do
 			it "Se puede comparar" do
-				expect(@p1==@p2).to be(true)
-				expect(@p1==@p3).to be(false)
-				expect(@p1<@p3).to be(true)
+				(@p1==@p2).should eq(true)
+				(@p1==@p3).should eq(false)
+
+				(@p1<@p3).should eq(true)
+				(@p3<@p1).should eq(false)
+
+				(@p1<=@p3).should eq(true)
+				(@p3<=@p1).should eq(false)
+
+				(@p3>@p1).should eq(true)
+				(@p1>@p3).should eq(false)
+
+				(@p3>=@p1).should eq(true)
+				(@p1>=@p3).should eq(false)
 			end
 		end
 
@@ -138,11 +149,13 @@ describe DList do
 			falsas3 = ["1", "bob", "Ninguna de las anteriores"]
 			falsas4 = ["Una constante", "Un objeto", "Ninguna de las anteriores"]
 
-			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", falsas1)
-			@p2 = ToF.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","V")
-			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", falsas3)
-			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", falsas4)
-			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V")
+			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", falsas1, 1)
+			@p2 = ToF.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","V", 2)
+			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", falsas3, 3)
+			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", falsas4, 4)
+			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V", 5)
+
+			@p6 = ToF.new("Es una pregunta sin sentido","V")
 
 			@l2 = DList.new([@p5,@p4,@p3,@p2,@p1])
 
@@ -182,6 +195,17 @@ describe DList do
 			it "#Funciona enumerable" do
 				@l1.find {|i| i == 3}.should eq(3)
 				@l1.find {|i| i == 2}.should eq(nil)
+				@l1.count.should eq(3)
+				@l1.all?.should eq(true)
+				@l1.max.should eq(5)
+			end
+
+			it "#Funciona enumerable con lista de preguntas" do
+				@l2.find {|i| i == @p1}.should eq(@p1)
+				@l2.find {|i| i == @p6}.should eq(nil)
+				@l2.count.should eq(5)
+				@l2.all?.should eq(true)
+				@l2.max.should eq(@p5)
 			end
 
 		end
