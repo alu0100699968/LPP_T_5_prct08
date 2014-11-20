@@ -249,4 +249,37 @@ describe DList do
 
 
 	end
+
+	describe Interfaz do
+		before :each do
+			respuestas1 = ["#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
+			respuestas3 = ["1", "bob", "Ninguna de las anteriores"]
+			respuestas4 = ["Una constante", "Un objeto", "Ninguna de las anteriores"]
+
+			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", respuestas1, 1)
+			@p2 = ToF.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","V", 2)
+			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", respuestas3, 3)
+			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", respuestas4, 4)
+			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V", 5)
+
+			@l1 = DList.new([@p5,@p4,@p3,@p2,@p1])
+
+			@e1=Examen.new(@l1)
+
+			@i1=Interfaz.new(@e1)
+
+		end
+
+		context "Pruebas de la clase Interfaz" do
+
+			it "Se muestran las preguntas" do
+				@i1.mostrar.should eq(puts @examen.to_s)
+			end
+
+			it "Se realizan las preguntas:" do
+				@i1.stub(:gets).and_return("nil\n","V\n","HEY!\n","Una instancia de la clase Class\n","V\n")
+				@i1.responder.should eq("5/5")
+			end
+		end
+	end
 end
