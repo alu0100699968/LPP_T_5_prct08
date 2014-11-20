@@ -102,7 +102,7 @@ class DList
     aux=@head
     s=""
     while aux[:next] do
-      s = s + "#{aux[:value]}"
+      s = s + "#{aux[:value]} "
       aux=aux[:next]
     end
     s = s + "#{aux[:value]}"
@@ -111,12 +111,12 @@ class DList
 
   def to_is
     aux=@head
-    s="Lista:  "
+    s=""
     while aux[:next] do
       aux=aux[:next]
     end
     while aux[:prev] do
-      s = s + "#{aux[:value]}" + "  ->  "
+      s = s + "#{aux[:value]} "
       aux=aux[:prev]
     end
     s = s + "#{aux[:value]}"

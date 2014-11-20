@@ -9,7 +9,7 @@ class Test
   end
 
   def == (a)
-    @pregunta==a.pregunta && @correcta==a.correcta && @respuestas==a.respuestas
+    @pregunta==a.pregunta && @correcta==a.correcta && @respuestas.should =~ a.respuestas
   end
 
   def initialize(pregunta, correcta, respuestas, nivel=nil)

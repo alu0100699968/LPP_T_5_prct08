@@ -13,7 +13,7 @@ module Exam
 			it "Pregunta correctamente hecha" do
 				@p1.pregunta.should eq("CCAA de Espanya")
 				@p1.correcta.should eq('17')
-				@p1.respuestas.should eq(['15','16','18'])
+				@p1.respuestas.should =~ ['15','16','18']
 			end
 		end
 
@@ -53,11 +53,11 @@ module Exam
 			it "Preguntas verdadero o falso correctamente realizadas" do
 				@p1.pregunta.should eq("Hoy es viernes")
 				@p1.correcta.should eq("V")
-				@p1.respuestas.should eq(["V","F"])
+				@p1.respuestas.should =~ ["V","F"]
 
 				@p2.pregunta.should eq("Hoy es jueves")
 				@p2.correcta.should eq("F")
-				@p2.respuestas.should eq(["V","F"])
+				@p2.respuestas.should =~ ["V","F"]
 			end
 
 			it "Hereda de Test" do #Dos alternativas para comprobar la herencia
@@ -163,10 +163,10 @@ describe DList do
 
 		describe "Preguntas" do
 			it "#Se almacenan las preguntas en la lista" do
-				@l2.to_s.should eql "Lista:  #{@p1.to_s}  ->  #{@p2.to_s}  ->  #{@p3.to_s}  ->  #{@p4.to_s}  ->  #{@p5.to_s}"
+				@l2.to_s.should eql "#{@p1.to_s} #{@p2.to_s} #{@p3.to_s} #{@p4.to_s} #{@p5.to_s}"
 			end
 			it "#Se almacenan las preguntas en la lista" do
-				@l2.to_is.should eql "Lista:  #{@p5.to_s}  ->  #{@p4.to_s}  ->  #{@p3.to_s}  ->  #{@p2.to_s}  ->  #{@p1.to_s}"
+				@l2.to_is.should eql "#{@p5.to_s} #{@p4.to_s} #{@p3.to_s} #{@p2.to_s} #{@p1.to_s}"
 			end
 		end
 
@@ -178,14 +178,14 @@ describe DList do
 
 			it "#Se puede insertar un elemento" do
 				@l1.pushHead("nuevo")
-				@l1.to_s.should eql "Lista:  nuevo  ->  3  ->  4  ->  5"
-				@l1.to_is.should eql "Lista:  5  ->  4  ->  3  ->  nuevo"
+				@l1.to_s.should eql "nuevo 3 4 5"
+				@l1.to_is.should eql "5 4 3 nuevo"
 			end
 
 			it "#Se pueden insertar varios elementos" do
 				@l1.pushHead([2,1,0])
-				@l1.to_s.should eql "Lista:  0  ->  1  ->  2  ->  3  ->  4  ->  5"
-				@l1.to_is.should eql "Lista:  5  ->  4  ->  3  ->  2  ->  1  ->  0"
+				@l1.to_s.should eql "0 1 2 3 4 5"
+				@l1.to_is.should eql "5 4 3 2 1 0"
 			end
 
 			it "#Debe existir una Lista con su cabeza" do
@@ -209,6 +209,44 @@ describe DList do
 			end
 
 		end
+
+	end
+
+
+	describe Examen do
+		before :each do
+			respuestas1 = ["#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
+			respuestas3 = ["1", "bob", "Ninguna de las anteriores"]
+			respuestas4 = ["Una constante", "Un objeto", "Ninguna de las anteriores"]
+
+			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", respuestas1, 1)
+			@p2 = ToF.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","V", 2)
+			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", respuestas3, 3)
+			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", respuestas4, 4)
+			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V", 5)
+
+			@l1 = DList.new([@p5,@p4,@p3,@p2,@p1])
+
+			@e1=Examen.new(@l1)
+		end
+
+		context "Pruebas de la clase Examen" do
+			it "Comprobación de preguntas hecha" do
+				@e1.check_exam(["nil","V","HEY!","Una instancia de la clase Class","V"]).should eq("5/5")
+				@e1.check_exam(["n","V","HEY!","Una instancia de la clase Class","V"]).should eq("4/5")
+				@e1.check_exam(["n","F","HEY!","Una instancia de la clase Class","V"]).should eq("3/5")
+				@e1.check_exam(["n","F","HEY","Una instancia de la clase Class","V"]).should eq("2/5")
+				@e1.check_exam(["n","F","HEY","Una instancia de la clase String","V"]).should eq("1/5")
+				@e1.check_exam(["n","F","HEY","Una instancia de la clase String","F"]).should eq("0/5")
+			end
+			it "Comprobación de tamaño" do
+				@e1.size.should eq(5)
+			end
+			it "Comprobación de tamaño" do
+				@e1.to_s.should eq("#{@p1.to_s} #{@p2.to_s} #{@p3.to_s} #{@p4.to_s} #{@p5.to_s}")
+			end
+		end
+
 
 	end
 end
