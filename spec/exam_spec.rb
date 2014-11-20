@@ -17,11 +17,6 @@ module Exam
 			end
 		end
 
-		context "Conversion" do
-	  	it "Se puede generar html" do
-				@p1.should respond_to :to_html
-	    end
-	  end
 
 		context "Comparable" do
 			it "Se puede comparar" do
@@ -108,6 +103,8 @@ module Exam
 
 			@l2 = List.new([@p1,@p2,@p3,@p4,@p5])
 
+			@l3 = List.new(3)
+
 		end
 
 		describe "Preguntas" do
@@ -125,6 +122,8 @@ module Exam
 			it "#Se puede insertar un elemento" do
 				@l1.push("nuevo")
 				@l1.to_s.should eql "Lista:  3  ->  4  ->  5  ->  nuevo"
+				@l3.push([2,1])
+				@l3.to_s.should eql "Lista:  3  ->  2  ->  1"
 			end
 
 			it "#Se pueden insertar varios elementos" do
@@ -159,6 +158,8 @@ describe DList do
 
 			@l2 = DList.new([@p5,@p4,@p3,@p2,@p1])
 
+			@l3 = DList.new(1)
+
 		end
 
 		describe "Preguntas" do
@@ -176,16 +177,29 @@ describe DList do
 				@l1.head[:value].should eql 4
 			end
 
+			it "#Se extrae el último elemento de la lista" do
+				@l1.popTail
+				@l1.to_s.should eql "3 4"
+			end
+
 			it "#Se puede insertar un elemento" do
 				@l1.pushHead("nuevo")
 				@l1.to_s.should eql "nuevo 3 4 5"
 				@l1.to_is.should eql "5 4 3 nuevo"
+
+				@l3.pushTail(2)
+				@l3.to_s.should eql "1 2"
+				@l3.to_is.should eql "2 1"
 			end
 
 			it "#Se pueden insertar varios elementos" do
 				@l1.pushHead([2,1,0])
 				@l1.to_s.should eql "0 1 2 3 4 5"
 				@l1.to_is.should eql "5 4 3 2 1 0"
+
+				@l3.pushTail([2,3,4])
+				@l3.to_s.should eql "1 2 3 4"
+				@l3.to_is.should eql "4 3 2 1"
 			end
 
 			it "#Debe existir una Lista con su cabeza" do
@@ -279,6 +293,11 @@ describe DList do
 			it "Se realizan las preguntas:" do
 				@i1.stub(:gets).and_return("nil\n","V\n","HEY!\n","Una instancia de la clase Class\n","V\n")
 				@i1.responder.should eq("5/5")
+			end
+
+			it "Se puede examinar:" do
+				@i1.stub(:gets).and_return("nil\n","V\n","HEY!\n","Una instancia de la clase Class\n","V\n")
+				@i1.examinar.should eq("5/5")
 			end
 		end
 	end
