@@ -177,7 +177,7 @@ describe DList do
 				@l1.head[:value].should eql 4
 			end
 
-			it "#Se extrae el último elemento de la lista" do
+			it "#Se extrae el ultimo elemento de la lista" do
 				@l1.popTail
 				@l1.to_s.should eql "3 4"
 			end
@@ -190,6 +190,10 @@ describe DList do
 				@l3.pushTail(2)
 				@l3.to_s.should eql "1 2"
 				@l3.to_is.should eql "2 1"
+
+				@l3.pushTail(3)
+				@l3.to_s.should eql "1 2 3"
+				@l3.to_is.should eql "3 2 1"
 			end
 
 			it "#Se pueden insertar varios elementos" do
@@ -245,7 +249,7 @@ describe DList do
 		end
 
 		context "Pruebas de la clase Examen" do
-			it "Comprobación de preguntas hecha" do
+			it "Comprobacion de preguntas hecha" do
 				@e1.check_exam(["nil","V","HEY!","Una instancia de la clase Class","V"]).should eq("5/5")
 				@e1.check_exam(["n","V","HEY!","Una instancia de la clase Class","V"]).should eq("4/5")
 				@e1.check_exam(["n","F","HEY!","Una instancia de la clase Class","V"]).should eq("3/5")
@@ -253,10 +257,10 @@ describe DList do
 				@e1.check_exam(["n","F","HEY","Una instancia de la clase String","V"]).should eq("1/5")
 				@e1.check_exam(["n","F","HEY","Una instancia de la clase String","F"]).should eq("0/5")
 			end
-			it "Comprobación de tamaño" do
+			it "Comprobacion de tamaño" do
 				@e1.size.should eq(5)
 			end
-			it "Comprobación de tamaño" do
+			it "Comprobacion de tamaño" do
 				@e1.to_s.should eq("#{@p1.to_s} #{@p2.to_s} #{@p3.to_s} #{@p4.to_s} #{@p5.to_s}")
 			end
 		end
