@@ -257,10 +257,10 @@ describe DList do
 				@e1.check_exam(["n","F","HEY","Una instancia de la clase String","V"]).should eq("1/5")
 				@e1.check_exam(["n","F","HEY","Una instancia de la clase String","F"]).should eq("0/5")
 			end
-			it "Comprobacion de tamaño" do
+			it "Comprobacion de longitud" do
 				@e1.size.should eq(5)
 			end
-			it "Comprobacion de tamaño" do
+			it "Comprobacion de longitud" do
 				@e1.to_s.should eq("#{@p1.to_s} #{@p2.to_s} #{@p3.to_s} #{@p4.to_s} #{@p5.to_s}")
 			end
 		end
