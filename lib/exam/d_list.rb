@@ -30,20 +30,26 @@ class DList
 
   def popHead
     nodo = @head
-    @head=@head[:next]
-    @head[:prev]=nil
-    return nodo[:value]
+    if nodo
+    	@head=@head[:next]
+    	if @head
+    		@head[:prev]=nil
+    	end
+      	return nodo[:value]
+    end
   end
 
   def popTail
   	nodo = @head
-  	while nodo[:next] do
-      nodo=nodo[:next]
+  	if nodo
+  		while nodo[:next] do
+      		nodo=nodo[:next]
+    	end
+    	aux=nodo[:prev]
+    	aux[:next]=nil
+    	nodo[:prev]=nil
+    	return nodo[:value]
     end
-    aux=nodo[:prev]
-    aux[:next]=nil
-    nodo[:prev]=nil
-    return nodo[:value]
   end
 
   def pushHead(v)

@@ -2,33 +2,37 @@ class Test
 
   include Comparable
   
-  attr_accessor :pregunta, :correcta, :falsas, :nivel
+  attr_accessor :pregunta, :correcta, :respuestas, :nivel
 
   def <=> (a)
     @nivel <=> a.nivel
   end
 
   def == (a)
-    @pregunta==a.pregunta && @correcta==a.correcta && @falsas==a.falsas
+    @pregunta==a.pregunta && @correcta==a.correcta && @respuestas==a.respuestas
   end
 
-  def initialize(pregunta, correcta, falsas=nil, nivel=nil)
+  def initialize(pregunta, correcta, respuestas, nivel=nil)
     @pregunta = pregunta
     @correcta = correcta
-    @falsas = falsas
+    @respuestas = respuestas
+    @respuestas.shuffle
     @nivel = nivel
   end
 
+  def check_ans(c)
+    return (c == @correcta)
+  end
+
   def to_html
-    opciones = @correcta+[@falsas]
-    opciones = opciones.shuffle
+    opciones = @respuestas
     opciones=''
     opciones += %Q{<input type = "radio" value="#{opciones}" name=resp> #{options}\n}
     texto = %Q{{#{@pregunta}}<br/>{#{opciones}}}
   end
 
   def to_s
-    texto = "#{@pregunta} #{@correcta} #{[@falsas]}"
+    texto = "#{@pregunta} /n #{[@respuestas]}"
   end
 
 end

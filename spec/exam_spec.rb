@@ -13,7 +13,7 @@ module Exam
 			it "Pregunta correctamente hecha" do
 				@p1.pregunta.should eq("CCAA de Espanya")
 				@p1.correcta.should eq('17')
-				@p1.falsas.should eq(['15','16','18'])
+				@p1.respuestas.should eq(['15','16','18'])
 			end
 		end
 
@@ -53,11 +53,11 @@ module Exam
 			it "Preguntas verdadero o falso correctamente realizadas" do
 				@p1.pregunta.should eq("Hoy es viernes")
 				@p1.correcta.should eq("V")
-				@p1.falsas.should eq("F")
+				@p1.respuestas.should eq(["V","F"])
 
 				@p2.pregunta.should eq("Hoy es jueves")
 				@p2.correcta.should eq("F")
-				@p2.falsas.should eq("V")
+				@p2.respuestas.should eq(["V","F"])
 			end
 
 			it "Hereda de Test" do #Dos alternativas para comprobar la herencia
@@ -96,14 +96,14 @@ module Exam
 		before :each do
 			@l1 = List.new([3,4,5])
 
-			falsas1 = ["#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
-			falsas3 = ["1", "bob", "Ninguna de las anteriores"]
-			falsas4 = ["Una constante", "Un objeto", "Ninguna de las anteriores"]
+			respuestas1 = ["nil","#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
+			respuestas3 = ["HEY","1", "bob", "Ninguna de las anteriores"]
+			respuestas4 = ["Una instancia de la clase Class","Una constante", "Un objeto", "Ninguna de las anteriores"]
 
-			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", falsas1)
+			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", respuestas1)
 			@p2 = ToF.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","V")
-			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", falsas3)
-			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", falsas4)
+			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", respuestas3)
+			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", respuestas4)
 			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V")
 
 			@l2 = List.new([@p1,@p2,@p3,@p4,@p5])
@@ -145,14 +145,14 @@ describe DList do
 		before :each do
 			@l1 = DList.new([5,4,3])
 
-			falsas1 = ["#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
-			falsas3 = ["1", "bob", "Ninguna de las anteriores"]
-			falsas4 = ["Una constante", "Un objeto", "Ninguna de las anteriores"]
+			respuestas1 = ["#<Xyz:0xa000208>", "0", "Ninguna de las anteriores"]
+			respuestas3 = ["1", "bob", "Ninguna de las anteriores"]
+			respuestas4 = ["Una constante", "Un objeto", "Ninguna de las anteriores"]
 
-			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", falsas1, 1)
+			@p1 = Test.new("Cual es la salida del siguiente codigo Ruby? \n class Xyz \n def pots \n @nice \n end \n end \n xyz = Xyz.new \n p xyz.pots", "nil", respuestas1, 1)
 			@p2 = ToF.new("La siguiente definicion de un hash en Ruby es valida: \n hash_raro = { \n [1, 2, 3] => Object.new(), \n Hash.new => :toto \n }","V", 2)
-			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", falsas3, 3)
-			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", falsas4, 4)
+			@p3 = Test.new("Cual es la salida del siguiente codigo Ruby?","HEY!", respuestas3, 3)
+			@p4 = Test.new("Cual es el tipo del objeto en el siguiente codigo Ruby? \n class Objeto \n end","Una instancia de la clase Class", respuestas4, 4)
 			@p5 = ToF.new("Es apropiado que una clase Tablero herede de una clase Juego","V", 5)
 
 			@p6 = ToF.new("Es una pregunta sin sentido","V")
