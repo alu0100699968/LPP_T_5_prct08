@@ -88,11 +88,21 @@ class DList
 	    end
   end
 
+  def size
+    aux=@head
+    n=0
+    while aux[:next] do
+      n=n+1
+      aux=aux[:next]
+    end
+    n=n+1
+  end
+
   def to_s
     aux=@head
-    s="Lista:  "
+    s=""
     while aux[:next] do
-      s = s + "#{aux[:value]}" + "  ->  "
+      s = s + "#{aux[:value]}"
       aux=aux[:next]
     end
     s = s + "#{aux[:value]}"

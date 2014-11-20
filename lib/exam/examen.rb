@@ -24,6 +24,10 @@ class Examen
 		return "#{n}/#{a.size}";
 	end
 
+	def size
+		@list.size
+	end
+
 	def to_s
 		@list.to_s
 	end

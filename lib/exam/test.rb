@@ -1,7 +1,7 @@
 class Test
 
   include Comparable
-  
+
   attr_accessor :pregunta, :correcta, :respuestas, :nivel
 
   def <=> (a)
@@ -15,8 +15,7 @@ class Test
   def initialize(pregunta, correcta, respuestas, nivel=nil)
     @pregunta = pregunta
     @correcta = correcta
-    @respuestas = respuestas
-    @respuestas.shuffle
+    @respuestas = respuestas.shuffle
     @nivel = nivel
   end
 
@@ -32,7 +31,11 @@ class Test
   end
 
   def to_s
-    texto = "#{@pregunta} /n #{[@respuestas]}"
+    texto = "Pregunta: #{@pregunta} \n"
+    for i in 0..@respuestas.size-1
+      texto = texto + "\t #{i+1}) #{@respuestas[i]} \n"
+    end
+    return texto
   end
 
 end
