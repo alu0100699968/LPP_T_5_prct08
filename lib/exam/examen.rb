@@ -1,6 +1,7 @@
 #Require para utilizar el Struct Node
 require 'exam/d_list.rb'
 require 'exam/tof.rb'
+require 'exam/inverter.rb'
 
 
 # create a Examen
@@ -22,6 +23,10 @@ class Examen
 			end
 		end
 		return "#{n}/#{a.size}";
+	end
+
+	def invertir
+		@list=reverse(@list)
 	end
 
 	def size

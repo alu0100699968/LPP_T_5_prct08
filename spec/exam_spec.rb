@@ -294,13 +294,19 @@ describe DList do
 				@i1.mostrar.should eq(puts @examen.to_s)
 			end
 
-			it "Se realizan las preguntas:" do
+			it "Se realizan las preguntas" do
 				@i1.stub(:gets).and_return("nil\n","V\n","HEY!\n","Una instancia de la clase Class\n","V\n")
 				@i1.responder.should eq("5/5")
 			end
 
-			it "Se puede examinar:" do
+			it "Se puede examinar" do
 				@i1.stub(:gets).and_return("nil\n","V\n","HEY!\n","Una instancia de la clase Class\n","V\n")
+				@i1.examinar.should eq("5/5")
+			end
+
+			it "Se pueden invertir las preguntas" do
+				@i1.invertir_examen
+				@i1.stub(:gets).and_return("V\n","Una instancia de la clase Class\n","HEY!\n","V\n","nil\n")
 				@i1.examinar.should eq("5/5")
 			end
 		end

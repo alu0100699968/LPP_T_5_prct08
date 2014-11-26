@@ -26,4 +26,8 @@ class Interfaz
     responder
   end
 
+  def invertir_examen
+    @examen.invertir
+  end
+
 end
