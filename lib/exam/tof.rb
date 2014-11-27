@@ -1,8 +1,9 @@
-require 'exam/test.rb'
+module Exam
+  # create ToF that inherits Test
+  class ToF < Test
 
-class ToF < Test
-
-  def initialize (preguntas, correcta, nivel=nil)
-    super(preguntas,correcta, ["V","F"], nivel)
+    def initialize (preguntas, correcta, nivel=nil)
+      super(preguntas,correcta, ["V","F"], nivel)
+    end
   end
 end
