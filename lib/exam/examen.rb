@@ -17,7 +17,9 @@ module Exam
 					n = n+1
 				end
 			end
-			return "#{n}/#{a.size}";
+
+			#puts "#{n}/#{a.size}"
+			return "#{n}/#{a.size}"
 		end
 
 		def invertir

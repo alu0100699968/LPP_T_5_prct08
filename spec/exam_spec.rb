@@ -312,4 +312,35 @@ module Exam
 			end
 		end
 	end
+
+	describe Quiz do
+
+		before :each do
+			@quiz = Quiz.new("Cuestionario de PFS 10/12/2011") do |e|
+				e.question '¿En que año Cristobal Colón descubrió América?',
+				:right =>'1492',
+				:wrong =>'1942',
+				:wrong =>'1808',
+				:wrong =>'1914'
+
+				a = 5
+				b = 6
+				e.question "#{a}+#{b} = ",
+				:right =>"#{a + b}",
+				:wrong =>"44",
+				:wrong =>"#{a + b + 2}",
+				:wrong =>"#{a + b - 2}"
+			end
+
+		end
+
+		context "Pruebas de DSL" do
+
+			it "Existe el metodo run" do
+				expect(@quiz).to respond_to :run
+			end
+
+		end
+	end
+
 end
