@@ -16,7 +16,9 @@ module Exam
     def question(nombre, opciones = {})
       respuestas = []
       respuestas << opciones[:right]
-      respuestas << opciones[:wrong]
+      for i in 0..opciones[:wrong].size-1
+        respuestas << opciones[:wrong][i]
+      end
       pregunta = Test.new(nombre,opciones[:right],respuestas)
 
       @preguntas << pregunta
@@ -35,5 +37,4 @@ module Exam
     end
 
   end
-
 end

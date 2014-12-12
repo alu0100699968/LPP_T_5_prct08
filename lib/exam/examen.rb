@@ -18,7 +18,7 @@ module Exam
 				end
 			end
 
-			#puts "#{n}/#{a.size}"
+			puts "#{n}/#{a.size}"
 			return "#{n}/#{a.size}"
 		end
 
