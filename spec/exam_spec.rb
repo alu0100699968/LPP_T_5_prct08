@@ -319,13 +319,17 @@ module Exam
 			@quiz = Quiz.new("Cuestionario de PFS 10/12/2011") do |e|
 				e.question '¿En que año Cristobal Colón descubrió América?',
 				:right =>'1492',
-				:wrong => ['1942','1808','1914']
+				wrong => '1942',
+				wrong => '1808',
+				wrong => '1914'
 
 				a = 5
 				b = 6
 				e.question "#{a}+#{b} = ",
 				:right =>"#{a + b}",
-				:wrong => ["44","#{a + b + 2}","#{a + b - 2}"]
+				wrong => "44",
+				wrong => "#{a + b + 2}",
+				wrong => "#{a + b - 2}"
 			end
 
 		end

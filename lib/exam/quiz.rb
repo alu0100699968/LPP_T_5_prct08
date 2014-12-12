@@ -8,6 +8,7 @@ module Exam
 
       @nombre = nombre
       @preguntas = []
+      @count = 0
 
       instance_eval &block
 
@@ -15,14 +16,17 @@ module Exam
 
     def question(nombre, opciones = {})
       respuestas = []
-      respuestas << opciones[:right]
-      for i in 0..opciones[:wrong].size-1
-        respuestas << opciones[:wrong][i]
+      opciones.each do |key, value|
+        respuestas << value
       end
       pregunta = Test.new(nombre,opciones[:right],respuestas)
 
       @preguntas << pregunta
 
+    end
+
+    def wrong
+      @count += 1
     end
 
     def run
