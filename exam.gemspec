@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'exam/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "exam_alu0100696455"
+  spec.name          = "exam_LPP_T_5"
   spec.version       = Exam::VERSION
-  spec.authors       = ["Jonathan Expósito"]
-  spec.email         = ["alu0100696455@ull.edu.es"]
+  spec.authors       = ["Jonathan Expósito", "Sergio Rodríguez"]
+  spec.email         = ["alu0100696455@ull.edu.es", "alu0100699968@ull.edu.es"]
   spec.description   = %q{Gema para realizar tests}
   spec.summary       = %q{Gema para realizar tests}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/alu0100699968/LPP_T_5_prct08"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
