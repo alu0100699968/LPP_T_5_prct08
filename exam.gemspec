@@ -6,6 +6,7 @@ require 'exam/version'
 Gem::Specification.new do |spec|
   spec.name          = "exam_LPP_T_5"
   spec.version       = Exam::VERSION
+  spec.platform      = Gem::Platform::RUBY
   spec.authors       = ["Jonathan Expósito", "Sergio Rodríguez"]
   spec.email         = ["alu0100696455@ull.edu.es", "alu0100699968@ull.edu.es"]
   spec.description   = %q{Gema para realizar tests}
