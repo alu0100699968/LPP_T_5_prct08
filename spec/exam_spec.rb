@@ -317,7 +317,7 @@ module Exam
 
 		before :each do
 			@quiz = Quiz.new("Cuestionario de PFS 10/12/2011") do |e|
-				e.question '¿En que año Cristobal Colón descubrió América?',
+				e.question 'En que anyo Cristobal Colon descubrio America?',
 				:right =>'1492',
 				wrong => '1942',
 				wrong => '1808',
