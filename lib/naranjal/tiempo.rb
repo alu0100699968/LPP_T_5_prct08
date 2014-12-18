@@ -1,4 +1,7 @@
+require 'thread'
+
 module Naranjal
+
 
  class Tiempo
 
@@ -44,10 +47,5 @@ module Naranjal
     end
 
   end
-
-tiempo = Tiempo.new(Naranjero.new, Mutex.new, ConditionVariable.new)
-threads = tiempo.tiempo_pasa
-
-threads.each {|t| t.join}
 
 end

@@ -1,6 +1,7 @@
 require 'spec_helper'
 require "exam.rb"
 require "inverter.rb"
+require "naranjal.rb"
 
 module Exam
 	describe Test do
@@ -344,4 +345,27 @@ module Exam
 		end
 	end
 
+end
+
+module Naranjal
+
+	describe Tiempo do
+
+		before :each do
+
+			@t = Tiempo.new(Naranjero.new, Mutex.new, ConditionVariable.new)
+
+		end
+
+		context "Pruebas de Thread" do
+
+			it "Se ejecutan los threads" do
+				threads = @t.tiempo_pasa
+
+				threads.each {|t| t.join}
+
+			end
+
+		end
+	end
 end
